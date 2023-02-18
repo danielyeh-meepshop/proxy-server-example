@@ -35,11 +35,11 @@ app.get('*', (req, res) => {
   //   proxyRequest(req, res);
   // });
   proxyRequest(req, res);
-  // console.log(res, 'res');
+  // console.log('finish');
 });
 
-app.listen(8000, () => {
-  console.log('Express server listening on http://localhost:8000');
+app.listen(80, () => {
+  console.log('Express server listening on http://localhost:80');
 });
 
 // v2.

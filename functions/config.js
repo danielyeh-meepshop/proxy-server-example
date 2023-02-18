@@ -1,0 +1,7 @@
+module.exports.CONFIG = {
+  GOOGLE_CLOUD_PROJECT: process.env.GOOGLE_CLOUD_PROJECT,
+  NODE_ENV: process.env.NODE_ENV,
+  GROUP_BUY_CONVERT_TOPIC_NAME: process.env.GROUP_BUY_CONVERT_TOPIC_NAME,
+  GROUP_BUY_CONVERT_ENTRY_POINT:
+    process.env.GROUP_BUY_CONVERT_ENTRY_POINT ?? 'reverseProxyCrawler',
+};

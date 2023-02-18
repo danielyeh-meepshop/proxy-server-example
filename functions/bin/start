@@ -1,0 +1,13 @@
+#!/bin/bash
+gcloud beta emulators pubsub start --project=instant-matter-785 --host-port=localhost:8043 --quiet &
+echo 'waiting pubsub emulators initial start about 15 second' && sleep 15
+# Publish
+curl -s -X PUT 'http://localhost:8043/v1/projects/instant-matter-785/topics/reverse-proxy-crawler-local'
+# Subscription
+curl -s -X PUT 'http://localhost:8043/v1/projects/instant-matter-785/subscriptions/reverse-proxy-crawler-local' \
+  -H 'Content-Type: application/json' \
+  --data '{"topic":"projects/instant-matter-785/topics/reverse-proxy-crawler-local","pushConfig":{"pushEndpoint":"http://localhost:38080/projects/instant-matter-785/topics/reverse-proxy-crawler-local"}}'
+## 改成他讀懂的環境變數方式
+export $(yq e '. | to_entries | map(.key + "=" + .value) | join(" ")' .env.local.yaml)
+npm start
+
